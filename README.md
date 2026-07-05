@@ -12,6 +12,15 @@
 - Interactive Folium map dashboard
 - FastAPI alert endpoint for programmatic access
 
+## Model Performance
+| Metric | Score |
+|---|---|
+| R² Score | 0.9891 |
+| RMSE | 2.20 / 100 |
+| 5-Fold CV R² | 0.9891 ± 0.0008 |
+| Classification Accuracy | 94% |
+| LSTM RMSE | 6.32 |
+
 ## Architecture
 ## Tech Stack
 | Layer | Tools |
@@ -33,4 +42,5 @@ streamlit run streamlit_app/app.py
 ```
 
 ## Built by
-Naman Dwivedi — Master of IT (AI Major), University of Melbourne
+Naman Dwivedi — Master of IT (AI Major), University of Melbourne  
+Targeting AI Engineer internships at Deloitte AU, AWS, Google AU, NAB/CBA

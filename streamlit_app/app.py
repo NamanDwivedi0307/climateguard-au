@@ -52,7 +52,7 @@ html, body, [class*="css"] {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #64748b;
+    color: #94a3b8;
     margin-bottom: 0.3rem;
 }
 .metric-value {
@@ -63,7 +63,7 @@ html, body, [class*="css"] {
 }
 .metric-sub {
     font-size: 0.75rem;
-    color: #475569;
+    color: #94a3b8;
     margin-top: 0.2rem;
 }
 
@@ -100,7 +100,7 @@ html, body, [class*="css"] {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #64748b;
+    color: #94a3b8;
     border-bottom: 1px solid #1e2130;
     padding-bottom: 0.5rem;
     margin: 1.5rem 0 1rem 0;
@@ -130,7 +130,7 @@ html, body, [class*="css"] {
     align-items: center;
 }
 .alert-postcode { font-weight: 600; color: #f1f5f9; font-size: 0.95rem; }
-.alert-region { font-size: 0.78rem; color: #64748b; margin-top: 0.1rem; }
+.alert-region { font-size: 0.78rem; color: #94a3b8; margin-top: 0.1rem; }
 .alert-score {
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.1rem;
@@ -189,7 +189,7 @@ html, body, [class*="css"] {
 }
 .page-subtitle {
     font-size: 0.85rem;
-    color: #64748b;
+    color: #94a3b8;
     margin-top: 0.2rem;
 }
 </style>
@@ -291,7 +291,7 @@ with st.sidebar:
     st.markdown("""
     <div style='padding: 0.5rem 0 1.5rem 0;'>
         <div style='font-size:1.3rem; font-weight:700; color:#f1f5f9;'>🔥 ClimateGuard</div>
-        <div style='font-size:0.75rem; color:#475569; margin-top:0.2rem; letter-spacing:0.05em; text-transform:uppercase;'>AU Bushfire Risk Platform</div>
+        <div style='font-size:0.75rem; color:#94a3b8; margin-top:0.2rem; letter-spacing:0.05em; text-transform:uppercase;'>AU Bushfire Risk Platform</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -303,8 +303,8 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("""
-    <div style='font-size:0.72rem; color:#334155; line-height:1.6;'>
-        <div style='color:#475569; font-weight:600; margin-bottom:0.4rem;'>DATA SOURCES</div>
+    <div style='font-size:0.72rem; color:#94a3b8; line-height:1.6;'>
+        <div style='color:#94a3b8; font-weight:600; margin-bottom:0.4rem;'>DATA SOURCES</div>
         🛰️ NASA FIRMS VIIRS S-NPP<br>
         🌤️ BOM Weather API<br>
         📍 Australian Postcodes<br>
@@ -314,8 +314,8 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("""
-    <div style='font-size:0.72rem; color:#334155;'>
-        <div style='color:#475569; font-weight:600; margin-bottom:0.4rem;'>MODEL</div>
+    <div style='font-size:0.72rem; color:#94a3b8;'>
+        <div style='color:#94a3b8; font-weight:600; margin-bottom:0.4rem;'>MODEL</div>
         XGBoost + LSTM Ensemble<br>
         R² 0.9891 · RMSE 2.20<br>
         94% Classification Accuracy
@@ -368,7 +368,7 @@ if mode == "Risk Map":
     m = folium.Map(
         location=[-27.0, 134.0],
         zoom_start=4,
-        tiles="CartoDB positron",
+        tiles="OpenStreetMap",
         prefer_canvas=True
     )
 
@@ -400,7 +400,7 @@ if mode == "Risk Map":
 
     st.markdown("""
     <div style='display:flex;gap:1.2rem;margin-top:0.8rem;align-items:center;'>
-        <span style='font-size:0.72rem;color:#475569;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;'>Risk Level</span>
+        <span style='font-size:0.72rem;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;'>Risk Level</span>
         <span style='font-size:0.8rem;'><span style='color:#22c55e;'>●</span> Low (0–25)</span>
         <span style='font-size:0.8rem;'><span style='color:#f59e0b;'>●</span> Moderate (25–50)</span>
         <span style='font-size:0.8rem;'><span style='color:#ef4444;'>●</span> High (50–75)</span>
@@ -492,7 +492,7 @@ elif mode == "Postcode Lookup":
             direction = "increases" if top_feat["SHAP"] > 0 else "reduces"
             st.markdown(f"""
             <div style='background:#0f1117;border:1px solid #1e2130;border-radius:8px;padding:0.8rem 1rem;margin-top:0.5rem;'>
-                <span style='font-size:0.72rem;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;'>Key Driver</span><br>
+                <span style='font-size:0.72rem;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;'>Key Driver</span><br>
                 <span style='color:#f1f5f9;font-size:0.88rem;'><b style='color:#f59e0b;'>{top_feat["Feature"]}</b> {direction} risk by <b>{abs(top_feat["SHAP"]):.1f} points</b></span>
             </div>
             """, unsafe_allow_html=True)
@@ -501,7 +501,7 @@ elif mode == "Postcode Lookup":
             <div style='height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;
                         background:#0f1117;border:1px dashed #1e2130;border-radius:12px;margin-top:2rem;'>
                 <div style='font-size:2rem;margin-bottom:0.5rem;'>🔥</div>
-                <div style='color:#475569;font-size:0.85rem;'>Configure conditions and generate a prediction</div>
+                <div style='color:#94a3b8;font-size:0.85rem;'>Configure conditions and generate a prediction</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -557,7 +557,7 @@ elif mode == "Model Performance":
             <div style='font-size:1.4rem;min-width:2rem;text-align:center;'>{icon}</div>
             <div>
                 <div style='font-weight:600;color:#f1f5f9;font-size:0.9rem;'>{title}</div>
-                <div style='color:#64748b;font-size:0.8rem;margin-top:0.2rem;'>{desc}</div>
+                <div style='color:#94a3b8;font-size:0.8rem;margin-top:0.2rem;'>{desc}</div>
             </div>
         </div>
         """, unsafe_allow_html=True)

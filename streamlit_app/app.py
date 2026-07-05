@@ -326,8 +326,8 @@ with st.sidebar:
 if mode == "Risk Map":
     st.markdown("""
     <div style='margin-bottom:1.5rem;'>
-        <div class='page-title'>Australia Bushfire Risk Map</div>
-        <div class='page-subtitle'>Live postcode-level risk scoring using satellite fire data and weather conditions</div>
+        <div style='font-size:1.6rem;font-weight:700;color:#0f172a;letter-spacing:-0.02em;'>Australia Bushfire Risk Map</div>
+        <div style='font-size:0.85rem;color:#475569;margin-top:0.2rem;'>Live postcode-level risk scoring using satellite fire data and weather conditions</div>
     </div>
     """, unsafe_allow_html=True)
 

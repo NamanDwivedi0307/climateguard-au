@@ -368,7 +368,7 @@ if mode == "Risk Map":
     m = folium.Map(
         location=[-27.0, 134.0],
         zoom_start=4,
-        tiles="Esri.WorldImagery",
+        tiles="CartoDB positron",
         prefer_canvas=True
     )
 

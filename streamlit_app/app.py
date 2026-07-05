@@ -33,7 +33,35 @@ def load_models():
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv(os.path.join(BASE, "data/processed/features.csv"))
+    processed_path = os.path.join(BASE, "data/processed/features.csv")
+    synthetic_path = os.path.join(BASE, "data/synthetic/training_data.csv")
+
+    if not os.path.exists(processed_path):
+        import numpy as np
+        os.makedirs(os.path.join(BASE, "data/processed"), exist_ok=True)
+        df = pd.read_csv(synthetic_path)
+        df["postcode"] = df["postcode"].astype(str)
+
+        # Recompute engineered features
+        drought = df["drought_factor"].clip(lower=0.1)
+        df["ffdi"] = (2 * np.exp(
+            -0.45 + 0.987 * np.log(drought)
+            - 0.0345 * df["humidity_pct"]
+            + 0.0338 * df["temperature_c"]
+            + 0.0234 * df["wind_speed_kmh"]
+        )).clip(0, 200)
+        df["temp_wind_interaction"] = df["temperature_c"] * df["wind_speed_kmh"]
+        df["humidity_drought_interaction"] = df["humidity_pct"] * df["drought_factor"]
+        df["fire_weather_composite"] = df["temperature_c"]*0.4 + df["wind_speed_kmh"]*0.3 + (100-df["humidity_pct"])*0.3
+        df["is_summer"] = df["month"].isin([12,1,2]).astype(int)
+        df["is_autumn"] = df["month"].isin([3,4,5]).astype(int)
+        df["is_winter"] = df["month"].isin([6,7,8]).astype(int)
+        df["is_spring"] = df["month"].isin([9,10,11]).astype(int)
+        df["drought_severity"] = pd.cut(df["drought_factor"], bins=[0,3,6,8,10], labels=[0,1,2,3]).astype(float)
+        df["rain_recency"] = np.where(df["days_since_rain"]<7, 2, np.where(df["days_since_rain"]<30, 1, 0))
+        df.to_csv(processed_path, index=False)
+
+    df = pd.read_csv(processed_path)
     df["postcode"] = df["postcode"].astype(str)
     return df
 

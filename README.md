@@ -1,4 +1,4 @@
-# ClimateGuard-AU 🔥🌏
+# ClimateGuard-AU 
 
 **Real-time bushfire and climate risk prediction platform for Australian postcodes**
 
